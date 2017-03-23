@@ -10,10 +10,10 @@ RUN apt-get update \
     && apt-get install -y default-jdk
 
 # Download keybox
-ADD https://github.com/skavanagh/KeyBox/releases/download/v2.86.00/keybox-jetty-v2.86_00.tar.gz /opt/
-RUN tar -zxf /opt/keybox-jetty-v2.85_03.tar.gz -C /opt
+ADD https://github.com/skavanagh/KeyBox/releases/download/v2.89_00/keybox-jetty-v2.89_00.tar.gz /opt/
+RUN tar -zxf /opt/keybox-jetty-v2.89_00.tar.gz -C /opt
 RUN mv /opt/KeyBox-jetty /opt/keybox
-RUN rm /opt/keybox-jetty-v2.85_03.tar.gz
+RUN rm /opt/keybox-jetty-v2.89_00.tar.gz
 
 # Expose the http port
 expose 8443
