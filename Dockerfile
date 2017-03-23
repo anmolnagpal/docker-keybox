@@ -9,8 +9,8 @@ CMD ["/sbin/my_init"]
 RUN apt-get update \
     && apt-get install -y default-jdk
 
-# Download keybox
-ADD https://github.com/skavanagh/KeyBox/releases/download/v2.89_00/keybox-jetty-v2.89_00.tar.gz /opt/
+# Download keybox 
+ADD https://github.com/skavanagh/KeyBox/releases/download/v2.89.00/keybox-jetty-v2.89_00.tar.gz /opt/
 RUN tar -zxf /opt/keybox-jetty-v2.89_00.tar.gz -C /opt
 RUN mv /opt/KeyBox-jetty /opt/keybox
 RUN rm /opt/keybox-jetty-v2.89_00.tar.gz
