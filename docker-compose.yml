@@ -9,6 +9,6 @@ services:
     ports:
       - "8443:8443"
     volumes:
-      - ~/Workspace/keybox:/data:rw
+      - ~/Workspace/anmol/keybox:/opt/keybox:rw
     environment:
       dbPassword: 123456
