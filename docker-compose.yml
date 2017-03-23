@@ -1,9 +1,14 @@
 version: '2'
 services:
   keybox:
-    build: .
     container_name: keybox
+    image: tajawalcom/devops-java8
+    mem_limit: 1g
+    memswap_limit: 1g
+    cpu_shares: 20
     ports:
-        - 8443:8443
-#    environment:
-#        EDGE: 1
+      - "8443:8443"
+    volumes:
+      - ~/Workspace/keybox:/data:rw
+    environment:
+      dbPassword: 123456
