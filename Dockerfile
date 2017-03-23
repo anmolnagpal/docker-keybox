@@ -1,6 +1,6 @@
 # Using https://github.com/phusion/baseimage-docker as a base image
 FROM phusion/baseimage:latest
-MAINTAINER Diego Schmidt <dceschmidt@gmail.com>
+MAINTAINER Anmol Nagpal <ianmolnagpal@gmail.com>
 
 # Use baseimage-docker's init system
 CMD ["/sbin/my_init"]
