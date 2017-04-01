@@ -33,7 +33,7 @@ To Run KeyBox with Docker :)
 Clone keybox repository 
 
 ```
-https://github.com/tajawal/keybox.git
+https://github.com/anmolnagpal/docker-keybox.git
 ```
 Start KeyBox
 ```
