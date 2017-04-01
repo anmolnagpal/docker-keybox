@@ -9,6 +9,7 @@ services:
     ports:
       - "8443:8443"
     volumes:
-      - ~/Workspace/keybox:/opt/keybox:rw
+      - ~/Workspace/keybox:/data:rw
+    entrypoint: /data/startKeyBox.sh
     environment:
       dbPassword: 123456
