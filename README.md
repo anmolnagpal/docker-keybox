@@ -37,7 +37,7 @@ https://github.com/tajawal/keybox.git
 ```
 Start KeyBox
 ```
-cd 
+cd docker-keybox && docker-compose up -d 
 ```
 
 How to Configure SSL in Jetty
