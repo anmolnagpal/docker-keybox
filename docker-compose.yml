@@ -9,7 +9,7 @@ services:
     ports:
       - "8443:8443"
     volumes:
-      - ~/Workspace/keybox:/data:rw
+      - ~/Workspace/d0cker-keybox:/data:rw
     entrypoint: /data/startKeyBox.sh
     environment:
       dbPassword: 123456
