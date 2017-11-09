@@ -67,6 +67,9 @@ etc/jetty.xml
 ## Maximum time to block in total for a blocking IO operation (default -1 is to use idleTimeout on progress)
 # jetty.httpConfig.blockingTimeout=-1
 
+## Cookie compliance mode of: RFC2965, RFC6265
+# jetty.httpConfig.cookieCompliance=RFC6265
+
 ### Server configuration
 ## Whether ctrl+c on the console gracefully stops the Jetty server
 # jetty.server.stopAtShutdown=true
@@ -79,9 +82,3 @@ etc/jetty.xml
 
 ## Dump the state of the Jetty server, components, and webapps before shutdown
 # jetty.server.dumpBeforeStop=false
-
-## The name to uniquely identify this server instance
-#jetty.defaultSessionIdManager.workerName=node1
-
-## How frequently sessions are inspected
-#jetty.sessionInspectionInterval.seconds=60

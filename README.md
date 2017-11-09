@@ -28,22 +28,54 @@ http://maven.apache.org
     | Google Authenticator | [Google Play](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2) | [iTunes](https://itunes.apple.com/us/app/google-authenticator/id388497605) |
 
 
-To Run KeyBox with Docker :)
+To Run Bundled with Jetty
 ------
-Clone keybox repository 
+If you're not big on the idea of building from source...
 
-```
-https://github.com/anmolnagpal/docker-keybox.git
-```
+Download keybox-jetty-vXX.XX.tar.gz
+
+https://github.com/skavanagh/KeyBox/releases
+
+Export environment variables
+
+for Linux/Unix/OSX
+
+     export JAVA_HOME=/path/to/jdk
+     export PATH=$JAVA_HOME/bin:$PATH
+
+for Windows
+
+     set JAVA_HOME=C:\path\to\jdk
+     set PATH=%JAVA_HOME%\bin;%PATH%
+
 Start KeyBox
-```
-cd docker-keybox && docker-compose up -d 
-```
 
-How to Configure SSL in Jetty
+for Linux/Unix/OSX
+
+        ./startKeyBox.sh
+
+for Windows
+
+        startKeyBox.bat
+
+How to [Configure SSL in Jetty](http://www.eclipse.org/jetty/documentation/current/configuring-ssl.html)
 (it is a good idea to add or generate your own unique certificate)
 
-http://wiki.eclipse.org/Jetty/Howto/Configure_SSL
+http://www.eclipse.org/jetty/documentation/current/configuring-ssl.html
+
+To Build from Source
+------
+Export environment variables
+
+    export JAVA_HOME=/path/to/jdk
+    export M2_HOME=/path/to/maven
+    export PATH=$JAVA_HOME/bin:$M2_HOME/bin:$PATH
+
+In the directory that contains the pom.xml run
+
+	mvn package jetty:run
+
+**Note: Doing a mvn clean will delete the H2 DB and wipe out all the data.
 
 Managing SSH Keys
 ------
@@ -126,6 +158,32 @@ Connection details need to be set in the jaas.conf file
 
 Administrators will be added as they are authenticated and profiles of systems may be assigned by full-privileged users.
 
+User LDAP roles can be mapped to profiles defined in KeyBox through the use of the org.eclipse.jetty.jaas.spi.LdapLoginModule.
+
+    ldap-ol-with-roles {
+        //openldap auth with roles that can map to profiles
+        org.eclipse.jetty.jaas.spi.LdapLoginModule required
+        debug="false"
+        useLdaps="false"
+        contextFactory="com.sun.jndi.ldap.LdapCtxFactory"
+        hostname="<SERVER>"
+        port="389"
+        bindDn="<BIND-DN>"
+        bindPassword="<BIND-DN PASSWORD>"
+        authenticationMethod="simple"
+        forceBindingLogin="true"
+        userBaseDn="ou=users,dc=keybox,dc=com"
+        userRdnAttribute="uid"
+        userIdAttribute="uid"
+        userPasswordAttribute="userPassword"
+        userObjectClass="inetOrgPerson"
+        roleBaseDn="ou=groups,dc=keybox,dc=com"
+        roleNameAttribute="cn"
+        roleMemberAttribute="member"
+        roleObjectClass="groupOfNames";
+    };
+
+Users will be added/removed from defined profiles as they login and when the role name matches the profile name.
 
 Auditing
 ------
@@ -171,4 +229,27 @@ Screenshots
 
 ![Disable SSH Keys](http://sshkeybox.com/img/screenshots/medium/disable_keys.png)
 
+Acknowledgments
+------
+Special thanks goes to these amazing projects which makes this (and other great projects) possible.
 
++ [JSch](http://www.jcraft.com/jsch) Java Secure Channel - by [ymnk](https://github.com/ymnk)
++ [term.js](https://github.com/chjj/term.js) A terminal written in javascript - by [chjj](https://github.com/chjj)
+
+Third-party dependencies are mentioned in the [_3rdPartyLicenses.md_](3rdPartyLicenses.md)
+
+Author
+------
+**Sean Kavanagh**
+
++ sean.p.kavanagh6@gmail.com
++ https://twitter.com/spkavanagh6
+
+(Follow me on twitter for release updates, but mostly nonsense)
+
+Donate
+------
+Dontations are always welcome!
+
+<span class="badge-paypal"><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KKRTX5GB9GDF8" title="Donate to this project using Paypal"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" alt="PayPal donate button" /></a></span>
+ 
